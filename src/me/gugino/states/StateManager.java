@@ -1,11 +1,15 @@
 package me.gugino.states;
 
+import me.gugino.entitys.EntityPlayer;
+
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 
 public class StateManager {
 	
-	public States currentState = States.TITLE_STATE;
+	public States currentState = States.LEVEL_ONE;
+	
+	public EntityPlayer player;
 	
 	public enum States {
 		TITLE_STATE, LEVEL_ONE, LEVEL_TWO, LEVEL_THREE, END
@@ -17,6 +21,7 @@ public class StateManager {
 			break;
 			
 		case LEVEL_ONE:
+			player.update(i, delta);
 			break;
 		
 		case LEVEL_TWO:
@@ -40,6 +45,7 @@ public class StateManager {
 			break;
 			
 		case LEVEL_ONE:
+			player.render(g);
 			break;
 		
 		case LEVEL_TWO:

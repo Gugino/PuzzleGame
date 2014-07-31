@@ -1,5 +1,6 @@
 package me.gugino.puzzle;
 
+import me.gugino.entitys.EntityPlayer;
 import me.gugino.states.StateManager;
 
 import org.newdawn.slick.AppGameContainer;
@@ -34,6 +35,7 @@ public class Game extends BasicGame{
 
 	public void init(GameContainer gc) throws SlickException {
 		stateManager = new StateManager();
+		stateManager.player = new EntityPlayer(400, 400);
 	}
 
 	public void update(GameContainer gc, int delta) throws SlickException {
