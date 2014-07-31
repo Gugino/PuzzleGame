@@ -1,34 +1,48 @@
 package me.gugino.puzzle;
 
+import me.gugino.states.StateManager;
+
+import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 public class Game extends BasicGame{
 
-	public Game(String title) {
-		super(title);
-		// TODO Auto-generated constructor stub
+	public static final String TITLE = "Puzzle Game";
+	public static final int WIDTH = 800;
+	public static final int HEIGHT = 600;
+	
+	public StateManager stateManager;
+	
+	public Game() {
+		super(TITLE);
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SlickException{
+		AppGameContainer a = new AppGameContainer(new Game());
 		
+		a.setDisplayMode(WIDTH, HEIGHT, false);
+		a.setAlwaysRender(true);
+		a.setUpdateOnlyWhenVisible(false);
+		a.setTargetFrameRate(60);
+		a.setShowFPS(false);
+		a.start();
 	}
 
-	public void render(GameContainer arg0, Graphics arg1) throws SlickException {
-		// TODO Auto-generated method stub
+	public void init(GameContainer gc) throws SlickException {
+		stateManager = new StateManager();
+	}
+
+	public void update(GameContainer gc, int delta) throws SlickException {
+		Input i = gc.getInput();
 		
+		stateManager.updateStates(delta, i);
 	}
 
-	public void init(GameContainer arg0) throws SlickException {
-		// TODO Auto-generated method stub
-		
+	public void render(GameContainer gc, Graphics g) throws SlickException {
+		stateManager.renderStates(g);
 	}
-
-	public void update(GameContainer arg0, int arg1) throws SlickException {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
